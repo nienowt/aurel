@@ -1,22 +1,13 @@
-<template>
-  <ul>
-    <li repeat.for="task of chores">
-      ${task.name}:
-      ${task.chore}
-      <button click.trigger="remove(task.id)" name="button">Delete</button>
-      <button click.trigger="editOpen = task.id" name="button">Edit</button>
-      <form if.bind="editOpen == task.id" submit.trigger="edit(task)">
-        Name:<input value.bind="name">
-        Task:<input value.bind="chore">
-        <button  name="button">Submit Edit</button>
-        <button  name="button">Cancel</button>
-      </form>
-    </li>
-  </ul>
-  <form if.bind="editOpen == 'none'" submit.trigger="submit()">
-    <h1>${name || 'name'}: ${chore || 'chore'}</h1>
-    Name:<input value.bind="name">
-    Task:<input value.bind="chore">
-    <button type="submit" name="button">Submit Task</button>
-  </form>
+<template >
+  <nav role="navigation">
+    <a href="#">${router.title}</a>
+    <ul>
+      <li repeat.for="row of router.navigation">
+        <a href.bind="row.href">${row.title}</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="page-host">
+    <router-view></router-view>
+  </div>
 </template>
